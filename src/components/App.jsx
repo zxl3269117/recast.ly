@@ -16,26 +16,27 @@ class App extends React.Component {
     // changing the state
     // update this.state to
     // currentVideo is the video got clicked
+
     this.setState({currentVideo: video});
   }
 
   render() {
     return (
       <div>
-//     <nav className="navbar">
-//       <div className="col-md-6 offset-md-3">
-//         <div><h5><em>search</em> view goes here</h5></div>
-//       </div>
-//     </nav>
-//     <div className="row">
-//       <div className="col-md-7">
-//         <VideoPlayer video = {exampleVideoData[0]}/>
-//       </div>
-//       <div className="col-md-5">
-//         <VideoList videos = {exampleVideoData}/>
-//       </div>
-//     </div>
-//   </div>
+        <nav className="navbar">
+          <div className="col-md-6 offset-md-3">
+            <div><h5><em>search</em> view goes here</h5></div>
+          </div>
+        </nav>
+        <div className="row">
+          <div className="col-md-7">
+            <VideoPlayer video = {this.state.currentVideo}/>
+          </div>
+          <div className="col-md-5">
+            <VideoList videos = {exampleVideoData} detectClick = {(video) => { this.updateState(video); }}/>
+          </div>
+        </div>
+      </div>
     );
   }
 }
