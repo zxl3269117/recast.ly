@@ -20,7 +20,7 @@ var searchYouTube = (query, callback) => {
     // errorCB: () => {
     //   errorCB();
     // }
-  }).done(data => { console.log(data); callback(data); });
+  }).done(data => { callback(data); });
   // .fail(alert('Error!'));
 };
 
