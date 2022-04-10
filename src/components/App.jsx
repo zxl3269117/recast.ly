@@ -41,7 +41,7 @@ class App extends React.Component {
         }
       }
     };
-    this.setSearchText = _.debounce(this.setSearchText.bind(this), 5000, {leading: true});
+    this.setSearchText = _.debounce(this.setSearchText.bind(this), 500, {leading: true});
     this.updateState = this.updateState.bind(this);
     this.searchOnClick = this.searchOnClick.bind(this);
   }
