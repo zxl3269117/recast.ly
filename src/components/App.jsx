@@ -2,7 +2,6 @@ import exampleVideoData from '../data/exampleVideoData.js';
 import VideoList from './VideoList.js';
 import VideoPlayer from './VideoPlayer.js';
 import Search from './Search.js';
-// import searchYouTube from ;
 
 class App extends React.Component {
   constructor(props) {
@@ -42,6 +41,9 @@ class App extends React.Component {
         }
       }
     };
+    this.setSearchText = _.debounce(this.setSearchText.bind(this), 5000, {leading: true});
+    this.updateState = this.updateState.bind(this);
+    this.searchOnClick = this.searchOnClick.bind(this);
   }
 
   updateState (video) {
@@ -55,6 +57,18 @@ class App extends React.Component {
         currentVideo: data[0]
       });
     });
+  }
+
+  setSearchText(searchText) {
+    this.setState({text: searchText}, function() {
+      this.props.searchYouTube(searchText, (data) => {
+        this.setState({
+          videoList: data,
+          currentVideo: data[0]
+        });
+      });
+    });
+
   }
 
   searchOnClick(text) {
@@ -71,7 +85,10 @@ class App extends React.Component {
       <div>
         <nav className='navbar'>
           <div className='col-md-6 offset-md-3'>
-            <Search searchOnClick={this.searchOnClick.bind(this)}/>
+            <Search
+              searchOnClick={() => { this.searchOnClick(this.state.text); }}
+              searchText ={this.setSearchText}
+            />
           </div>
         </nav>
         <div className='row'>

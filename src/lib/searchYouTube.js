@@ -13,15 +13,13 @@ var searchYouTube = (query, callback) => {
       key: API_KEY
     },
     contentType: 'application/JSON',
-    // successCB: (data) => {
-    //   console.log(data);
-    //   callback(data);
-    // },
-    // errorCB: () => {
-    //   errorCB();
-    // }
-  }).done(data => { callback(data); });
-  // .fail(alert('Error!'));
+  }).done(data => {
+    if (data.length) {
+      callback(data);
+    } else {
+      alert('no results found!');
+    }
+  });
 };
 
 export default searchYouTube;

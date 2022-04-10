@@ -4,7 +4,10 @@ import exampleVideoData from '../data/exampleVideoData.js';
 var VideoList = (props) => (
   <div className="video-list">
     {props.videos.map(video =>
-      <VideoListEntry video = {video} detectClick = {() => { props.detectClick(video); }}/>
+      <VideoListEntry
+        video = {video}
+        // key = {video.etag}
+        detectClick = {() => { props.detectClick(video); }}/>
     )}
   </div>
 );
